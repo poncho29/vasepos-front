@@ -3,6 +3,7 @@ export * from './cart/Amount';
 export * from './cart/CouponForm';
 export * from './cart/ShoppingCart';
 export * from './cart/ShoppingCartItem';
+export * from './cart/SubmitOrderForm';
 
 // Product Components
 export * from './products/AddProductButton';
