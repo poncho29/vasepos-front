@@ -1,12 +1,29 @@
+import { FormEvent } from "react";
+
+import { useStore } from "@/zustand/store";
+
 export default function CouponForm() {
+  const coupon = useStore((state) => state.coupon);
+  const applyCoupon = useStore((state) => state.applyCoupon);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const couponName = formData.get('coupon_name') as string;
+
+    if (!couponName.length) return;
+
+    await applyCoupon(couponName);
+  }
 
   return (
     <>
       <p className="py-5 font-bold border-t border-gray-300">Canjear Cupón</p>
-      
+
       <form 
         className="flex" 
-        onSubmit={() => {}}
+        onSubmit={handleSubmit}
       >
         <input 
             type="text"
@@ -20,6 +37,12 @@ export default function CouponForm() {
             value='Canjear'
         />
       </form>
+
+      {coupon.message ? (
+        <p className="py-4 text-center text-sm font-bold">
+          { coupon.message }
+        </p>
+      ) : null}
     </>
   )
 }

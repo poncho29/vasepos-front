@@ -4,6 +4,7 @@ import { useStore } from "@/zustand/store";
 
 import { ShoppingCartItem } from "./ShoppingCartItem";
 import { Amount } from "./Amount";
+import CouponForm from "./CouponForm";
 
 export function ShoppingCart() {
   const contents = useStore((state) => state.contents);
@@ -32,6 +33,8 @@ export function ShoppingCart() {
           <dl className="py-6 text-sm font-medium text-gray-500 space-y-6 border-t border-gray-300">
             <Amount label="Total a pagar" amount={total} />
           </dl>
+
+          <CouponForm />
         </>
       ) : (
         <p className="text-xl text-center text-gray-900">El carrito está vacío</p>
