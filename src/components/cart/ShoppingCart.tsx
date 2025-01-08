@@ -3,11 +3,12 @@
 import { useStore } from "@/zustand/store";
 
 import { ShoppingCartItem } from "./ShoppingCartItem";
+import { CouponForm } from "./CouponForm";
 import { Amount } from "./Amount";
-import CouponForm from "./CouponForm";
 
 export function ShoppingCart() {
   const contents = useStore((state) => state.contents);
+  const discount = useStore((state) => state.discount);
   const total = useStore((state) => state.total);
 
   return (
@@ -31,6 +32,8 @@ export function ShoppingCart() {
           </ul>
 
           <dl className="py-6 text-sm font-medium text-gray-500 space-y-6 border-t border-gray-300">
+            {discount ? <Amount discount label="Descuento" amount={discount} /> : null}
+
             <Amount label="Total a pagar" amount={total} />
           </dl>
 
